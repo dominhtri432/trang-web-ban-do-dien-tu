@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>11 Shop - Home</title>
+    <style>
+        .nav-item:hover .nav-link {
+            color: yellowgreen;
+        }
+
+        .nav-link .active {
+            color: yellowgreen;
+        }
+        #owl-item-product{
+            min-height: 400px;
+            border-radius: 5px;
+            padding: 1rem;
+            background-color: yellowgreen;
+            transition: .1s ease-in-out;
+        }
+        #owl-item-product:hover{
+            padding: .5rem;
+        }
+        #product{
+            display: block;
+            min-height: 400px;
+            padding: 1rem;
+            border-radius: 5px;
+            color: black;
+            text-decoration: none;
+            border: 1px solid rgb(235, 233, 233);
+        }
+        #product:hover{
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark"">
+        <div class=" container">
+            
+                <span class="fs-5 fw-semibold"><span class="text-success">Shop11.com</span></span>
+            
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul id="myDIV" class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link fs-5 active" aria-current="page" href="/">Trang chủ</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link fs-5" href="#">Sản phẩm</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link fs-5" href="#">Tin tức</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-5" href="#">Liên hệ</a>
+                </li>
+                <li class="nav-item">
+                    <form action="/search" method="post" class="position-relative">
+                        <input class="form-control me-2 fs-5" type="search" name="search_key" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success position-absolute top-0 end-0 fs-5" type="submit"><i
+                                class="fas fa-search"></i></button>
+                    </form>
+                </li>
+                <ul class="navbar-nav ms-5">
+                    <li class="nav-item">
+                        <a class="nav-link fs-5" href="/cart"><i class="fas fa-shopping-cart"></i>&emsp14;Giỏ hàng</a>
+                    </li>
+                    <li id="isLogin" class="nav-item">
+                        <a class="nav-link fs-5" href="/login"><i class="fa-solid fa-circle-user"></i>&emsp14;Đăng nhập/Đăng
+                            ký</a>
+                    </li>
+
+                </ul>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    <section class="menu-bar p-2" style="background-color: yellowgreen;">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-sm p-2">
+                    <a class="text-dark fs-5" style="text-decoration: none;" href="/search/category/1"><i class="fas fa-mobile-alt"></i>Công tắc thông minh</a>
+                </div>
+                <div class="col-sm p-2">
+                    <a class="text-dark fs-5" style="text-decoration: none;" href="/search/category/2"><i class="fas fa-solid fa-laptop"></i>Đèn thông minh</a>
+                </div>
+                <div class="col-sm p-2">
+                    <a class="text-dark fs-5" style="text-decoration: none;" href="/search/category/3"><i class="fas fa-solid fa-headphones"></i>Phụ kiện thông minh</a>
+                </div>
+                <div class="col-sm p-2">
+                    <a class="text-dark fs-5" style="text-decoration: none;" href="/search/category/4"><i class="fa-solid fa-camera"></i>Hệ thống an ninh</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <% if(x === 'home'){ %>
+            <%- include('home') %>
+        <% }else if(x=== 'cart'){ %>
+            <%- include('cart') %>
+        <% }else if(x=== 'cart-voucher'){ %>
+            <%- include('cart_voucher') %>
+        <% }else if(x=== 'checkout'){ %>
+            <%- include('checkout',{user:user,vouchercode:vouchercode,vouchercode:vouchercode,cart:cart,subTotal:subTotal,toTal:toTal}) %>
+        <% }else if(x === 'info'){ %>
+            <%- include('info') %>
+        <% }else if(x === 'search'){ %>
+            <%- include('search',{products:products}) %>
+        <% }else if(x === 'login'){ %>
+            <%- include('login') %>
+        <% }else if(x === 'register'){ %>
+            <%- include('register') %>
+        <% } %>
+        </section>
+
+    <footer class="bg-dark p-5">
+        <div class="container">
+            <h1 class="text-light text-center">Trường Đại học Quy Nhơn</h1>
+           
+
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- OwlCarousel2 slide show list product -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+    <script type="text/javascript">
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            responsive: {
+                0: {
+                    items: 2
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 5
+                }
+            }
+        })
+    </script>
+    <!-- Boostrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+        </script>
+    <script>
+
+        //====> Start active mune bar ##################### 
+        // Add active class to the current button (highlight it)
+        var header = document.getElementById("myDIV");
+        var btns = header.getElementsByClassName("nav-link");
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].addEventListener("click", function () {
+                var current = document.getElementsByClassName("active");
+                current[0].className = current[0].className.replace(" active", "");
+                this.className += " active";
+            });
+        }
+        //====> End active mune bar ##################### 
+
+        //check Login
+        const cookies = document.cookie.split(';');
+        const myCookie = cookies.find(cookie => cookie.trim().startsWith('isLogin='));
+        const isLogin = myCookie ? myCookie.split('=')[1] : null;
+        if(isLogin){
+            const k = document.getElementById('isLogin');
+            k.innerHTML = `<a class="nav-link text-danger fs-5" onClick="return confirm('Đăng xuất hay không?')" href="/logout"><i class="fa-solid fa-circle-user"></i>&emsp14;Đăng xuất</a>`
+        }
+    </script>
+    <script>
+        //====> add to cart
+        // Tạo một mảng để lưu trữ các sản phẩm được chọn
+        var cart = [];
+
+        // Hàm để thêm sản phẩm vào giỏ hàng
+        function addToCart(id,name,img,price,discount){
+            var New_price = parseInt(price, 10);
+            var New_qty = 1;
+            var New_discount = parseInt(discount, 10)/100;
+            //kiểm tra sản phẩm có trong giỏ hàng chưa
+            cart = getCartCookie();
+            checkExit = true;
+            for(var i = 0 ; i < cart.length; i++){
+                //nếu đã có sản phảm thì tăng thêm số lượng
+                if(cart[i].id === id){
+                    cart[i].qty ++;
+                    cart[i].count = New_price*cart[i].qty;
+                    setCartCookie(cart);
+                    checkExit = false;
+                }
+            }
+            //nếu giỏ hàng chưa có sản phẩm này thì thêm;
+            if(checkExit){
+                var product = {
+                    id:id,
+                    name:name,
+                    img:img,
+                    qty:New_qty,
+                    price:price,
+                    discount:discount,
+                    count:(New_price*New_qty)-(New_price*New_discount).toString()
+                }
+                cart.push(product);
+                setCartCookie(cart);
+            }
+            alert("Thêm thành công");
+            console.log(getCartCookie())
+        }
+        function setCartCookie(cart) {
+            var cartJson = JSON.stringify(cart);
+            document.cookie = "cart=" + encodeURIComponent(cartJson) + "; path=/";
+        }
+        // Define a function to get the shopping cart cookie
+        function getCartCookie() {
+                var nameEQ = "cart=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) == 0) {
+                        var cartJson = decodeURIComponent(c.substring(nameEQ.length, c.length));
+                        return JSON.parse(cartJson);
+                    }
+                }
+                return [];
+        }
+        //Delete product in cart
+        function DeleteFromCart(x){
+            var id = x.toString();
+            const confirmed = confirm(`Chắc chắn xóa hay không?`);
+            if (confirmed) {
+                cart = getCartCookie();
+                for (var i = 0; i < cart.length; i++) {
+                    if (cart[i].id === id) {
+                        cart.splice(i,1);
+                        break;
+                    }
+                }
+                setCartCookie(cart);
+                location.reload();
+            }
+        }
+
+        //Display list product in cart 
+        var element = document.getElementById('Data')
+        if (element) {
+            var numProduct = document.getElementById('numProduct')
+            var tamTinh = document.getElementById('tamTinh');
+            var giamGia = document.getElementById('giamGia');
+            var tongCong = document.getElementById('tongCong');
+            var cart = getCartCookie();
+            var k = "";
+            var toTal1 = 0;
+            var toTal2 = 0;
+            for (i = 0; i < cart.length; i++) {
+                k += `<tr>
+                <td><p class="mt-3">${cart[i].name}</p></td>
+                <td><img src="/image/product/${cart[i].img}" class="rounded" width="50px" alt="..."></td>
+                <td><p class="mt-3 text-success">${new Intl.NumberFormat("en-US").format(cart[i].price)}</p></td>
+                <td>
+                    <input style="width:50px" id="quantity${cart[i].id}" type="Number" value="${cart[i].qty}" min=1>
+                </td>
+                <td><p class="mt-3 text-success">${cart[i].discount}%</p></td>
+                <td><p class="mt-3 text-success">${new Intl.NumberFormat("en-US").format(cart[i].count)}</p></td>
+                <td><p class="mt-3 text-danger"><a onClick="DeleteFromCart(${cart[i].id})"><i class="far fa-trash-alt"></i></p></a></td>
+                </tr>`;
+                toTal1 += cart[i].count;
+            }
+            numProduct.innerHTML = cart.length;
+            //writer list pro duct
+            element.innerHTML = k;
+            //write toTal1
+            tamTinh.innerHTML = new Intl.NumberFormat("en-US").format(toTal1.toString())+ " VND";
+            //write total2
+            if(giamGia){
+                toTal2 = toTal1 - (toTal1 * (parseInt(giamGia.textContent,10)/100));
+            }else{
+                toTal2 =toTal1;
+            }
+            tongCong.innerHTML = new Intl.NumberFormat("en-US").format(toTal2.toString())+ " VND";
+
+
+            // Duyệt qua mảng sản phẩm và tạo sự kiện lắng nghe cho mỗi sản phẩm
+            for (let i = 0; i < cart.length; i++) {
+                const quantityTextbox = document.getElementById("quantity" + cart[i].id);
+
+                quantityTextbox.addEventListener("input", function () {
+                    const quantity = parseInt(quantityTextbox.value, 10);
+                    cart[i].qty = quantity;
+                    cart[i].count = cart[i].price*cart[i].qty;
+                    setCartCookie(cart);
+                    location.reload();
+                });
+            }
+        }
+    </script>
+</body>
+
+
+</html>
